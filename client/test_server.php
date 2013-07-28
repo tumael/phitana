@@ -6,8 +6,8 @@ error_reporting(E_ALL);
 require_once 'lib/class.websocket_client.php';
 
 $message = '{
-    "type":"auth",
-    "message":{
+    "action":"asdf",
+    "data":{
         "nick":"carlos"
     }
 }';

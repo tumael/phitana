@@ -30,48 +30,50 @@ class PhitanaApplication extends Application
     public function onDisconnect($connection) {
         $id = $connection->getClientId();
         unset($this->list_users[$id]);
-        $this->broadcast($this->list_users());
+        $this->broadcast($this->disconnect($id));
     }
 
     public function onData($data, $connection) {
-        $obj = json_decode($data);
+        $payload = $this->_decodeData($data);
+        $action = $payload['action'];
 
         $id = $connection->getClientId();
         $user = $this->list_users[$id];
 
-        $action = $obj->type;
-        $method = 'execute' . ucfirst($action);
+        echo ' --> ' . $data;
 
-        $connection->send($this->$method($obj->message, $user));
+        $method = 'execute' . ucfirst($action);
+        if (method_exists($this, $method)) {
+            $connection->send($this->$method($payload['data'], $user));
+        }
     }
 
     private function list_users() {
-        $stdClass = new \stdClass();
-
-        $list = array();
+        $data = array();
         foreach ($this->list_users as $user) {
             $_user = new \stdClass();
             $_user->id = $user->getId();
             $_user->nick = $user->getNick();
-            $_user->status = ($user->getStatus()) ? 'waiting' : 'playing';
-            $list[] = $_user;
+            $_user->status = ($user->getStatus() == WAITING) ? 'waiting' : 'playing';
+            $data[] = $_user;
         }
 
-        $stdClass->type = 'list';
-        $stdClass->message = $list;
+        return $this->_encodeData('list', $data);
+    }
 
-        return json_encode($stdClass);
+    private function disconnect($id) {
+        return $this->_encodeData('logout', $id);
     }
 
     private function executeAuth($message, $user) {
-        $obj = json_decode($message);
-        $user->setNick($obj->nick);
-        
-        $stdClass = new \stdClass();
-        $stdClass->type = 'auth';
-        $stdClass->message = 'success';
+        $user->setNick($message);
 
-        return json_encode($stdClass);
+        $payload = new \stdClass();
+        $payload->id = $user->getId();
+        $payload->nick = $user->getNick();
+
+        $this->broadcast($this->_encodeData('login', $payload));
+        return $this->_encodeData('auth', 'success');
     }
 
     private function broadcast($message) {

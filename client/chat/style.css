@@ -1,0 +1,80 @@
+* {
+    font-size: 12px;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #ddffcc;
+}
+
+#wrapper {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.online {
+    background-color: #00ff00;
+}
+
+.offline {
+    background-color: #ff0000;
+}
+
+.clean {
+    clear: both;
+}
+
+#messages {
+    position: absolute;
+    top: 0px;
+    bottom: 20px;
+    left: 0px;
+    right: 0px;
+    background-color: #ffffff;
+    overflow: auto;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0px;
+    height: 20px;
+    left: 0px;
+    right: 0px;
+}
+
+#status {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#send {
+    position: absolute;
+    left: 20px;
+    right: 100px;
+    height: 20px;
+}
+
+input[type="text"] {
+    width: 100%;
+    border: none;
+}
+
+input[type="submit"] {
+    position: absolute;
+    border: none;
+    right: 0px;
+    height: 20px;
+    width: 100px;
+    background-color: #ff0ccc;
+}
+
+#messages p {
+    padding: 5px;
+}

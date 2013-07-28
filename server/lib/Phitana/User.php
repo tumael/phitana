@@ -2,6 +2,9 @@
 
 namespace Phitana;
 
+define('WAITING', false);
+define('PLAYING', true);
+
 class User
 {
     private $id;
@@ -9,6 +12,7 @@ class User
     private $nick;
     private $challenges;
     private $requests;
+    
     // false -> waiting
     // true -> playing
     private $status;
@@ -17,6 +21,7 @@ class User
         $this->setId($id);
         $this->setConnection($connection);
         $this->setNick('');
+        $this->setStatus(WAITING);
         $this->setChallenges(array());
         $this->setRequests(array());
     }
