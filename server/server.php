@@ -10,13 +10,15 @@ require(__DIR__ . '/lib/SplClassLoader.php');
 
 $classLoader = new SplClassLoader('WebSocket', __DIR__ . '/lib');
 $classLoader->register();
+$classLoader = new SplClassLoader('Phitana', __DIR__ . '/lib');
+$classLoader->register();
 
 $server = new \WebSocket\Server(
     $config['host'], $config['port'], $config['ssl']);
 
 // server settings:
 $server->setMaxClients($config['max_clients']);
-$server->setCheckOrigin($config['check_origin']);
+$server->setCheckOrigin((boolean)$config['check_origin']);
 //$server->setAllowedOrigin('foo.lh');
 $server->setMaxConnectionsPerIp($config['max_connections']);
 $server->setMaxRequestsPerMinute($config['max_request']);
