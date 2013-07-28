@@ -17,7 +17,7 @@ body {
 }
 
 figure {
-	background: #eee;
+	background: #75C7E2;
 	border: 6px solid;
 	border-radius: 1em;
 	height: 400px;
@@ -28,6 +28,10 @@ figure {
 body nav ul {
 	list-style: none;
 	text-align: center;	
+}
+
+.hidden {
+	display: none;
 }
 
 nav ul li {
