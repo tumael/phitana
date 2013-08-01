@@ -8,6 +8,11 @@ a {
 	text-decoration:none;
 }
 
+img.welcome {
+    width: 300px;
+    height: auto;
+}
+
 article, figcaption, figure, footer, header, hgroup, nav, section {
 	display: block;
 }

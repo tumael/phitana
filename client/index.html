@@ -1,51 +1,52 @@
 <!doctype html>
 <html lang="es">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="description" content="Aplicacion que te permite jugar 3 en raya en modo multijugador" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="css/index.css">
-	<script src="chat/jquery.min.js" type="text/javascript"></script>
-	<script src="js/auth.js" type="text/javascript"></script>
-	<title>3enRaya</title>
-</head>
-<body>
-	<div id="contenedor">
-	<div id="index" style="display:block;">
-		<header>
-			<figure>
-				<img src="img/tres.jpg" alt="Bienvenido!!!" height= "400px" width="300px">
-				<figcaption></figcaption>
-			</figure>
-		</header>
-		<nav>
-			<ul>
-				<li id="li-inicio"><a href="#inicio" class="MO">Jugar</a></li>
-				<li id="li-opciones"><a href="#sala" class="MO">Opciones</a></li>
-				<li id="li-ayuda"><a href="#jugar" class="MO">Ayuda</a></li>
-			</ul>
-		</nav>
-	</div>
-
-	<div id="inicio" class="oculto" style="display:none;">
-		<form id="formulario" action="POST">
-		<h1>Nick</h1>
-		<fieldset id="entrada">
-			<input id="nick" type="text" placeholder="nick" autofocus required />			
-		</fieldset>
-		<fieldset id="accion">
-			<button type="button" id="enviar" onclick="iniciar()">Enviar</button>
-		</fieldset>
-	</form>
-	</div>
-
-	<div id="sala" class="oculto"></div>
-
-	<div id="jugar" class="oculto"></div>
-
-	<div id="opciones" class="oculto"></div>
-
-	<div id="ayuda" class="hidden"></div>
-	</div>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Aplicacion que te permite jugar 3 en raya en modo multijugador" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="css/index.css">
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/auth.js" type="text/javascript"></script>
+        <title>3enRaya</title>
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="index">
+                <header>
+                    <figure>
+                        <img class="welcome" src="img/tres.jpg" alt="Bienvenido!!!" />
+                        <figcaption></figcaption>
+                    </figure>
+                </header>
+                <nav>
+                    <ul>
+                        <li id="li-index">
+                            <a href="#index">Jugar</a>
+                        </li>
+                        <li id="li-options">
+                            <a href="#options">Opciones</a>
+                        </li>
+                        <li id="li-help">
+                            <a href="#help">Ayuda</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="index">
+                <form id="formulario" action="POST">
+                <h1>Nick</h1>
+                <fieldset id="entrada">
+                        <input id="nick" type="text" placeholder="nick" autofocus required />			
+                </fieldset>
+                <fieldset id="accion">
+                        <button type="button" id="enviar" onclick="iniciar()">Enviar</button>
+                </fieldset>
+                </form>
+                </div>
+            <div id="room"></div>
+            <div id="play"></div>
+            <div id="options"></div>
+            <div id="help"></div>
+        </div>
+    </body>
 </html>
