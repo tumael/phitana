@@ -2,7 +2,7 @@ var link = {
     data : null,
     action : null,
     nick : null,
-    url : 'ws://10.0.0.8:8000/chat',
+    url : 'ws://10.0.0.8:8000/tictactoe',
     socket : null,
     init: function (msg){
 
