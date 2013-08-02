@@ -13,5 +13,5 @@ $message = '{
 }';
 
 $client = new WebsocketClient();
-$client->connect('10.0.0.9', 8000, '/phitana');
+$client->connect('10.0.0.8', 8000, '/tictactoe');
 echo $client->sendData($message);

@@ -14,10 +14,16 @@ class TictactoeApplication extends Application
 {
     public $list_users;
     public $list_rooms;
+    public $server = null;
 
     public function __construct() {
         $this->list_users = array();
         $this->list_rooms = array();
+    }
+
+    public function setServer($server) {
+        $this->server = $server;
+        $this->log('[TICTACTOE] ready!');
     }
 
     public function onConnect($connection) {
@@ -29,6 +35,8 @@ class TictactoeApplication extends Application
         $user->sendMessage(
             $this->_encodeData('connect', true)
         );
+
+        $this->log('[connect] ' . $id);
     }
 
     public function onDisconnect($connection) {
@@ -44,6 +52,8 @@ class TictactoeApplication extends Application
                 $this->_encodeData('user-delete', $id)
             );
         }
+
+        $this->log('[user-delete]* ' . $id);
     }
 
     public function onData($data, $connection) {
@@ -58,10 +68,13 @@ class TictactoeApplication extends Application
             case 'users-list':
                 // TODO generar lista de usuarios
                 $list = array();
-                foreach ($this->list_users as $user) {
-                    $list[] = $user->getStdClass();
+                foreach ($this->list_users as $_user) {
+                    if ($_user->getId() !== $user->getId()) {
+                        $list[] = $_user->getStdClass();
+                    }
                 }
                 $user->sendMessage('user-list', $list);
+                $this->log('[user-list] ' . $id);
                 break;
             case 'user-nick':
                 $ready = $user->isReady();
@@ -71,29 +84,43 @@ class TictactoeApplication extends Application
                     $this->_broadcast(
                         $this->_encodeData('user-new', $user->getStdClass())
                     );
+                    $this->log('[user-new]* ' . $id);
                 } else {
                     $this->_broadcast(
                         $this->_encodeData('user-nick', $user->getStdClass())
                     );
+                    $this->log('[user-nick]* ' . $id);
                 }
                 break;
             case 'user-challenge';
-                // TODO marcar el desafio de $user a data.id
-                $opponent = $this->list_users[$data];
-                $user->addRequest($opponent);
-                $opponent->addChallenge($user);
+                if ($data <> $id) {
+                    // TODO marcar el desafio de $user a data.id
+                    $opponent = $this->list_users[$data];
+                    $user->addRequest($opponent);
+                    $opponent->addChallenge($user);
 
-                $opponent->sendMessage(
-                    $this->_encodeData('user-challenge', $user->getId())
-                );
+                    $opponent->sendMessage(
+                        $this->_encodeData('user-challenge', $user->getId())
+                    );
+                    $this->log('[user-challenge] ' . $id);
+                }
                 break;
             case 'user-accept':
-                // TODO jugar
-                $opponent = $this->list_users[$data];
-                $opponent->sendMessage(
-                    $this->_encodeData('user-accept', $user->getId())
-                );
+                if ($data <> $id) {
+                    // TODO jugar
+                    $opponent = $this->list_users[$data];
+                    $opponent->sendMessage(
+                        $this->_encodeData('user-accept', $user->getId())
+                    );
+                    $this->log('[user-accept] ' . $id);
+                }
                 break;
+        }
+    }
+
+    private function log($message) {
+        if (!empty($this->server)) {
+            $this->server->log($message);
         }
     }
 

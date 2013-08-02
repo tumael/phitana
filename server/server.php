@@ -23,9 +23,11 @@ $server->setCheckOrigin((boolean)$config['check_origin']);
 $server->setMaxConnectionsPerIp($config['max_connections']);
 $server->setMaxRequestsPerMinute($config['max_request']);
 
-foreach ($config['apps'] as $app) {
-    $_app = '\\WebSocket\\Application\\' . ucfirst($app) . 'Application';
-    $server->registerApplication($app, $_app::getInstance());
+foreach ($config['apps'] as $app_name) {
+    $_app = '\\WebSocket\\Application\\' . ucfirst($app_name) . 'Application';
+    $app = $_app::getInstance();
+    $app->setServer($server);
+    $server->registerApplication($app_name, $app);
 }
 
 $server->run();

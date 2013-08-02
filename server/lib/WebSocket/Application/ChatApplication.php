@@ -17,6 +17,8 @@ class ChatApplication extends Application
     public function __construct() {
         $this->list_users = array();
     }
+    
+    public function setServer() {}
 
     public function onConnect($connection) {
         $id = $connection->getClientId();
