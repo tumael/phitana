@@ -1,11 +1,9 @@
 var link = {
-    data : null,
+    info : null,
     action : null,
-    nick : null,
     url : 'ws://10.0.0.8:8000/tictactoe',
     socket : null,
     init: function (msg){
-
         try{
             link.socket = new WebSocket(link.url);
             link.socket.onopen    = link.initConnection;
@@ -16,29 +14,53 @@ var link = {
         }
     },
     initConnection: function(msg){
-        link.nick= prompt("Please enter your name:","Your name")
-        link.request("user-nick",link.nick)
-        console.log("entro men")
+        nick = prompt("Please enter your name:","Your name");
+        link.request("user-nick",nick);
     },
     stopConnection : function(msg){
-        
+        alert("Logout.");
     },
     processMessage : function(msg){
-        link.data=JSON.parse(msg.data);
-        console.log(link.data);
+        if(msg){
+            link.info=JSON.parse(msg.data);
+        }
     },
     request : function(action,data){
         payload=new Object();
         payload.action=action
         payload.data=data
         link.socket.send(JSON.stringify(payload))
-    }
-};
-var userlist={
-    data : null,
-    init : function(){
-        link.request("users-list","")
-        //userlist.data = link.data;
-        return link.data;
     },
-} 
+};
+
+
+var UserInfo = {
+
+    data : null,
+    init : function( dataUser){
+        UserInfo.data =  dataUser;
+    },
+    listUser : function(){
+        link.request("user-list",'');
+        return link.info.data;
+    },
+    changeNameUser :function( newNickName){
+        link.request("user-nick", newNickName);
+    },
+    challengeUser : function(idChallengeUser){
+        link.request("user-challenge", idChallengeUser);
+    },
+    acceptChallangeUser :function (idAcceptChallangeUser){
+        link.request("user-accept", idAcceptChallangeUser);
+    },
+    logoutUser : function(){
+        link.request("user-delete", link.nick);
+    },
+}
+
+window.addEventListener('load',link.init,false)
+            
+function listUser(){
+    list = UserInfo.listUser();
+    console.log(list);
+}
