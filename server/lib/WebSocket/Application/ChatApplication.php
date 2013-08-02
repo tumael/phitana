@@ -13,12 +13,16 @@ use Phitana;
 class ChatApplication extends Application
 {
     public $list_users;
+    public $server;
 
     public function __construct() {
         $this->list_users = array();
     }
     
-    public function setServer() {}
+    public function setServer($server) {
+        $this->server = $server;
+        $this->log('ready!!');
+    }
 
     public function onConnect($connection) {
         $id = $connection->getClientId();
@@ -30,6 +34,7 @@ class ChatApplication extends Application
         $this->list_users[$id] = $user;
 
         $this->broadcast($this->_encodeData('message', 'nuevo usuario conectado'));
+        $this->log('new connection');
     }
 
     public function onDisconnect($connection) {
@@ -37,11 +42,20 @@ class ChatApplication extends Application
         unset($this->list_users[$id]);
 
         $this->broadcast($this->_encodeData('logout', $id));
+        $this->log('close connection');
     }
 
     public function onData($data, $connection) {
         $payload = $this->_decodeData($data);
+        
         $this->broadcast($this->_encodeData('message', $payload['data']));
+        $this->log('send message');
+    }
+    
+    private function log($message) {
+        if (!empty($this->server)) {
+            $this->server->log('[CHAT] ' . $message);
+        }
     }
 
     private function broadcast($message) {
