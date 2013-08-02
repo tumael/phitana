@@ -1,78 +1,80 @@
-var link=new(function(){$(document).ready(function(){
-//    var data=null
-    var action=null
-    var nick=null
+var Behaviors=new(function(){
+    this.prompt=function(){
+        var nick=prompt('Ingrese su nombre de usuario','Nombre:')
+        Socket.nickChange(nick)
+    }
+    this.cleanUsers=function(){
+        $('.list-gamers ul').html('')
+    }
+    this.renderUsers=function(users){
+        for (var i in users) {
+            $('.list-gamers ul').append(
+                '<li id="'+users[i].id+'"><span>'+users[i].nick+'</span></li>')
+        }
+        $('.count-gamers').html(users.length)
+    }
+    this.addUser=function(user){
+        $('.list-gamers ul').append(
+            '<li id="'+user.id+'"><span>'+user.nick+'</span></li>')
+    }
+    this.removeUser=function(id){
+        $('.list-gamers ul li#'+id).remove()
+    }
+})()
+
+var Socket=new(function(){
+    this.socket=null
+    this.nickChange=function(nick){
+        var payload
+        payload=new Object()
+        payload.action='user-nick'
+        payload.data=nick
+        this.socket.send(JSON.stringify(payload))
+    }
+    this.requestUsers=function(){
+        var payload
+        payload=new Object()
+        payload.action='users-list'
+        payload.data=''
+        this.socket.send(JSON.stringify(payload))
+    }
+})()
+
+$(document).ready(function(){
     var url='ws://10.0.0.8:8000/tictactoe'
     var socket
     if(window.MozWebSocket){
-      socket=new MozWebSocket(url);
+      socket=new MozWebSocket(url)
     } else if(window.WebSocket){
-      socket=new WebSocket(url);
+      socket=new WebSocket(url)
     }
-    socket.onopen=function(msg){
-        nick= prompt("Please enter your name:","Your name")
-        registrar('users-list','')
-        registrar('user-nick',nick)
-        console.log(nick)
+    Socket.socket=socket
+    socket.onopen=function() {
+        Behaviors.prompt()
     }
     socket.onmessage=function(msg){
         var response=JSON.parse(msg.data)
-        evaluar(response)
-//        var date=new Date()
-//        return $('#messages').append('<p>'+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+' - '+response.data+'</p>')
+        var action=response.action
+        var data=response.data
+
+        console.log(action)
+
+        switch(action){
+            case 'connect':
+                Socket.requestUsers()
+                break;
+            case 'user-new':
+                Behaviors.addUser(data)
+                break;
+            case 'user-delete':
+                Behaviors.removeUser(data)
+                break;
+            case 'users-list':
+                Behaviors.renderUsers(data)
+                break;
+        }
     }
     socket.onclose=function(msg){
-//        return $('#status').removeClass().addClass('offline')
+        Behaviors.cleanUsers()
     }
-//    $('input[type="text"]').focus()
-//    $('form').submit(function(){
-//        var msg = $('input[name="msg"]').val()
-//        var payload
-//        payload=new Object()
-//        payload.action="message"
-//        payload.data=msg
-//        socket.send(JSON.stringify(payload))
-//        $('input[name="msg"]').val('')
-//        return false
-//    })
-
-var registrar=function(action,data){
-    var payload
-    payload=new Object()
-    payload.action=action
-    payload.data=data
-    socket.send(JSON.stringify(payload))
-}
-var enviar=function(){
-    
-        
-}
-var evaluar=function(responce){
-//    console.log(responce.data)
-    var data=responce.data
-        console.log(data)
-//        var test = 0
-    switch(responce.action){
-        case 'users-list':
-            for (var da in data) {
-//                console.log(data[da].nick)
-                $('.list-gamers ul').append('<li id="'+da+'"><span>'+data[da].nick+'</span></li>')
-            }
-            $('.count-gamers').html(data.length)
-            $('.list-gamers ul li span').click(function(){
-                    var test = $(this).parent().attr('id')
-                    console.log(data[test])
-                })
-            
-            break
-        case 'aa':
-            break
-    }
-}
-var listar=function(lista){
-    $.each(lista,function(id){
-        console.log(id)
-    })
-}
-  })
-})()
+})

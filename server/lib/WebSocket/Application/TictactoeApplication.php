@@ -49,7 +49,7 @@ class TictactoeApplication extends Application
         // TODO enviar un evento user-delete a todos los usuarios
         if ($ready) {
             $this->_broadcast(
-                $this->_encodeData('user-delete', $id)
+                $this->_encodeData('user-delete', $id), $id
             );
         }
 
@@ -74,9 +74,9 @@ class TictactoeApplication extends Application
                     }
                 }
                 $user->sendMessage(
-                    $this->_encodeData('user-list', $list)
+                    $this->_encodeData('users-list', $list)
                 );
-                $this->log('[user-list] ' . count($this->list_users) . ' - ' . $id);
+                $this->log('[users-list] ' . count($this->list_users) . ' - ' . $id);
                 break;
             case 'user-nick':
                 $ready = $user->isReady();
@@ -84,12 +84,12 @@ class TictactoeApplication extends Application
                 // TODO notificar el cambio de nombre a los usuarios
                 if (!$ready) {
                     $this->_broadcast(
-                        $this->_encodeData('user-new', $user->getStdClass())
+                        $this->_encodeData('user-new', $user->getStdClass()), $id
                     );
                     $this->log('[user-new]* ' . $id);
                 } else {
                     $this->_broadcast(
-                        $this->_encodeData('user-nick', $user->getStdClass())
+                        $this->_encodeData('user-nick', $user->getStdClass()), $id
                     );
                     $this->log('[user-nick]* ' . $id);
                 }
@@ -126,9 +126,11 @@ class TictactoeApplication extends Application
         }
     }
 
-    private function _broadcast($message) {
+    private function _broadcast($message, $id) {
         foreach ($this->list_users as $user) {
-            $user->sendMessage($message);
+            if ($user->getId() <> $id) {
+                $user->sendMessage($message);
+            }
         }
     }
 }
