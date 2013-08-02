@@ -23,6 +23,7 @@ header {
 	font-size: 30px;
 	background: url('../img/sprite.png') repeat-x;
 	background-position: 0% 0%;
+	min-height: 48px;
 	margin-bottom: 5px;
 }
 
@@ -73,9 +74,9 @@ header>.count-playing {
 
 footer {
 	background: url('../img/sprite.png') repeat-x;
-	background-position:0 -50;
+	background-position:0% 100%;
 	width: 100%;
-	min-height: 45px;
+	min-height: 48px;	
 	position: fixed;
 	bottom: 0;
 }
