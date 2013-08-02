@@ -52,7 +52,7 @@ Operacion:
 Respuesta:
 {
     "action":"connect",
-    "data":"true" // podria ser tambien false
+    "data":"true"
 }
 
 - nuevo usuario:
@@ -75,7 +75,11 @@ Respuesta:
 Operacion:
 {
     "action":"user-nick",
-    "data":"carlos"
+    "data": {
+        "id":"123123",
+        "nick":"carlos",
+        "status":"waiting"
+    }
 }
 - nuevo desafio de parte de otro usuario:
 Respuesta:

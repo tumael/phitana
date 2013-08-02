@@ -24,19 +24,32 @@ class TictactoeApplication extends Application
         $id = $connection->getClientId();
         $user = new \Phitana\User($id, $connection);
         $this->list_users[$id] = $user;
+
         // TODO enviar peticion de conexion exitosa solo al usuario
+        $user->sendMessage(
+            $this->_encodeData('connect', true)
+        );
     }
 
     public function onDisconnect($connection) {
         $id = $connection->getClientId();
+        $ready = $this->list_users[$id]->isReady();
+
         unset($this->list_users[$id]);
+
         // TODO si establecio su nombre de usuario =>
         // TODO enviar un evento user-delete a todos los usuarios
+        if ($ready) {
+            $this->_broadcast(
+                $this->_encodeData('user-delete', $id)
+            );
+        }
     }
 
     public function onData($data, $connection) {
         $payload = $this->_decodeData($data);
         $action = $payload['action'];
+        $data = $payload['data'];
 
         $id = $connection->getClientId();
         $user = $this->list_users[$id];
@@ -44,49 +57,49 @@ class TictactoeApplication extends Application
         switch ($action) {
             case 'users-list':
                 // TODO generar lista de usuarios
+                $list = array();
+                foreach ($this->list_users as $user) {
+                    $list[] = $user->getStdClass();
+                }
+                $user->sendMessage('user-list', $list);
                 break;
             case 'user-nick':
+                $ready = $user->isReady();
+                $user->setNick($data);
                 // TODO notificar el cambio de nombre a los usuarios
+                if (!$ready) {
+                    $this->_broadcast(
+                        $this->_encodeData('user-new', $user->getStdClass())
+                    );
+                } else {
+                    $this->_broadcast(
+                        $this->_encodeData('user-nick', $user->getStdClass())
+                    );
+                }
+                break;
             case 'user-challenge';
                 // TODO marcar el desafio de $user a data.id
+                $opponent = $this->list_users[$data];
+                $user->addRequest($opponent);
+                $opponent->addChallenge($user);
+
+                $opponent->sendMessage(
+                    $this->_encodeData('user-challenge', $user->getId())
+                );
                 break;
             case 'user-accept':
                 // TODO jugar
+                $opponent = $this->list_users[$data];
+                $opponent->sendMessage(
+                    $this->_encodeData('user-accept', $user->getId())
+                );
                 break;
         }
     }
-//
-//    private function list_users() {
-//        $data = array();
-//        foreach ($this->list_users as $user) {
-//            $_user = new \stdClass();
-//            $_user->id = $user->getId();
-//            $_user->nick = $user->getNick();
-//            $_user->status = ($user->getStatus() == WAITING) ? 'waiting' : 'playing';
-//            $data[] = $_user;
-//        }
-//
-//        return $this->_encodeData('list', $data);
-//    }
-//
-//    private function disconnect($id) {
-//        return $this->_encodeData('logout', $id);
-//    }
 
-//    private function executeAuth($message, $user) {
-//        $user->setNick($message);
-//
-//        $payload = new \stdClass();
-//        $payload->id = $user->getId();
-//        $payload->nick = $user->getNick();
-//
-//        $this->broadcast($this->_encodeData('login', $payload));
-//        return $this->_encodeData('auth', 'success');
-//    }
-
-//    private function broadcast($message) {
-//        foreach ($this->list_users as $user) {
-//            $user->getConnection()->send($message);
-//        }
-//    }
+    private function _broadcast($message) {
+        foreach ($this->list_users as $user) {
+            $user->sendMessage($message);
+        }
+    }
 }
