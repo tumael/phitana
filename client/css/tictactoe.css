@@ -29,18 +29,20 @@ header {
 
 header>.count-gamers {
 	color: rgba(0, 0, 0, 1);
-	margin: 30px;
+	margin: 45px;
 }
 
 header>.count-challengers {
 	color: rgba(55, 113, 200, 1);
 	float: right;
+	margin-right: 50px;
 }
 
 
 header>.count-playing {
 	color: rgba(255, 0, 0, 1);
 	float: right;
+	margin-right: 20px;
 }
 
 .list-gamers {
@@ -61,6 +63,10 @@ header>.count-playing {
 	background: rgba(55, 113, 200, 1);
 }
 
+.list-gamers>ul>li>span {
+	padding: 5px;
+}
+
 .list-gamers>ul>li>a {
 	border-color: black;
 	background: rgba(255, 255, 255, 1);
@@ -70,6 +76,7 @@ header>.count-playing {
     font-size: 15px;
     float: right;
     margin-top: 4px;
+    margin-right: 5px;
 }
 
 footer {
