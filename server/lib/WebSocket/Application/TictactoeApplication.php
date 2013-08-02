@@ -23,7 +23,7 @@ class TictactoeApplication extends Application
 
     public function setServer($server) {
         $this->server = $server;
-        $this->log('[TICTACTOE] ready!');
+        $this->log('ready!!');
     }
 
     public function onConnect($connection) {
@@ -73,8 +73,10 @@ class TictactoeApplication extends Application
                         $list[] = $_user->getStdClass();
                     }
                 }
-                $user->sendMessage('user-list', $list);
-                $this->log('[user-list] ' . $id);
+                $user->sendMessage(
+                    $this->_encodeData('user-list', $list)
+                );
+                $this->log('[user-list] ' . count($this->list_users) . ' - ' . $id);
                 break;
             case 'user-nick':
                 $ready = $user->isReady();
@@ -120,7 +122,7 @@ class TictactoeApplication extends Application
 
     private function log($message) {
         if (!empty($this->server)) {
-            $this->server->log($message);
+            $this->server->log('[TICTACTOE] ' . $message);
         }
     }
 
