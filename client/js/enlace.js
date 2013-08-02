@@ -1,42 +1,44 @@
-var enlace = {
+var link = {
     data : null,
     action : null,
     nick : null,
-    direccion : 'ws://10.0.0.8:8000/chat',
+    url : 'ws://10.0.0.8:8000/chat',
     socket : null,
     init: function (msg){
 
         try{
-            enlace.socket = new WebSocket(enlace.direccion);
-            enlace.socket.onopen    = enlace.iniciarConexion;
-            enlace.socket.onmessage = enlace.procesarMensaje;
-            enlace.socket.onclose   = enlace.detenerConexion;
+            link.socket = new WebSocket(link.url);
+            link.socket.onopen    = link.initConnection;
+            link.socket.onmessage = link.processMessage;
+            link.socket.onclose   = link.stopConnection;
         }catch( error){
-            console.log(error);
+            console.log( "Init:" + error);
         }
     },
-    iniciarConexion: function(msg){
-        enlace.nick= prompt("Please enter your name:","Your name")
-        enlace.format("user-nick",enlace.nick)
+    initConnection: function(msg){
+        link.nick= prompt("Please enter your name:","Your name")
+        link.request("user-nick",link.nick)
         console.log("entro men")
     },
-    detenerConexion : function(msg){
+    stopConnection : function(msg){
         
     },
-    procesarMensaje : function(msg){
-        enlace.data=JSON.parse(msg.data)
-        console.log(enlace.data)
+    processMessage : function(msg){
+        link.data=JSON.parse(msg.data);
+        console.log(link.data);
     },
-    format : function(action,data){
-        payload=new Object()
+    request : function(action,data){
+        payload=new Object();
         payload.action=action
         payload.data=data
-        enlace.socket.send(JSON.stringify(payload))
+        link.socket.send(JSON.stringify(payload))
     }
 };
 var userlist={
-    userlist : null,
+    data : null,
     init : function(){
-        enlace.format("users-list","")
+        link.request("users-list","")
+        //userlist.data = link.data;
+        return link.data;
     },
 } 

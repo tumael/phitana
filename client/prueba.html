@@ -4,11 +4,15 @@
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript" src="js/enlace.js"></script>
-        <script>window.addEventListener('load',enlace.init,false)</script>
+        <script>
+            window.addEventListener('load',enlace.init,false)
+            var userList = userlist.init();
+
+            for (var i = 0; i < userList.length; i++) {
+                console.log(userList[i].action + " - " + userList[i].data);
+            };
+        </script>
     </head>
     <body>
-        <div>
-            <button onclick="userlist.init()">asd</button>
-        </div>
     </body>
 </html>
