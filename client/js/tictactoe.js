@@ -1,24 +1,32 @@
 var Behaviors=new(function(){
+    this.count_users=0
     this.prompt=function(){
         var nick=prompt('Ingrese su nombre de usuario','Nombre:')
         Socket.nickChange(nick)
     }
     this.cleanUsers=function(){
         $('.list-gamers ul').html('')
+        Behaviors.setCountUsers(0)
     }
     this.renderUsers=function(users){
         for (var i in users) {
             $('.list-gamers ul').append(
                 '<li id="'+users[i].id+'"><span>'+users[i].nick+'</span></li>')
         }
-        $('.count-gamers').html(users.length)
+        Behaviors.setCountUsers(users.length)
     }
     this.addUser=function(user){
         $('.list-gamers ul').append(
             '<li id="'+user.id+'"><span>'+user.nick+'</span></li>')
+        Behaviors.setCountUsers(Behaviors.count_users+1)
     }
     this.removeUser=function(id){
         $('.list-gamers ul li#'+id).remove()
+        Behaviors.setCountUsers(Behaviors.count_users-1)
+    }
+    this.setCountUsers=function(count){
+        Behaviors.count_users=count
+        $('.count-gamers').html(Behaviors.count_users)
     }
 })()
 
@@ -41,7 +49,7 @@ var Socket=new(function(){
 })()
 
 $(document).ready(function(){
-    var url='ws://10.0.0.8:8000/tictactoe'
+    var url='ws://127.0.0.1:8000/tictactoe'
     var socket
     if(window.MozWebSocket){
       socket=new MozWebSocket(url)
