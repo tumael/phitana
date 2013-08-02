@@ -2,7 +2,7 @@
   $(document).ready(function(){
     var serverUrl
     var socket
-    serverUrl='ws://10.0.0.9:8000/chat'
+    serverUrl='ws://10.0.0.8:8000/chat'
     if(window.MozWebSocket){
       socket=new MozWebSocket(serverUrl);
     } else if(window.WebSocket){

@@ -1,4 +1,4 @@
-Conjuto de servicios que puedes hacer al servidor:
+Conjunto de servicios que puedes hacer al servidor:
 
 - lista de usuarios:
 Operacion:
@@ -27,6 +27,12 @@ Respuesta:
         },
     ]
 }
+- cambiar de nombre del usuario
+Operacion:
+{
+    "action":"user-nick",
+    "data":"carlos"
+}
 - desafiar a otro usuario:
 Operacion:
 {
@@ -41,6 +47,13 @@ Operacion:
 }
 
 - operaciones sobre la lista:
+
+- conexion exitosa:
+Respuesta:
+{
+    "action":"connect",
+    "data":"true" // podria ser tambien false
+}
 
 - nuevo usuario:
 Respuesta:
