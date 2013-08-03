@@ -30,6 +30,10 @@ header {
 	width: 100%;
 }
 
+#wrapper>header>.count-gamers {
+	min-height: 20px;
+}
+
 header>.count-gamers {
 	color: rgba(0, 0, 0, 1);
 	margin: 45px;
@@ -86,6 +90,10 @@ header>.count-playing {
     margin-top: 4px;
     margin-right: 5px;
     padding: 0px 10px;
+}
+
+.list-gamers>ul>li>a.hide {
+	display: none;
 }
 
 footer {
