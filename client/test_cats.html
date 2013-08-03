@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <style>
+            .row1 {
+                margin-top: -100px;
+                width: 100%;
+                height: 158px;
+                background-image: url('https://10.0.0.8/phitana/hilera1.png');
+                background-position: 0% 0%;
+            }
+            .row2 {
+                margin-top: -100px;
+                width: 100%;
+                height: 159px;
+                background-image: url('https://10.0.0.8/phitana/hilera3.png');
+                background-position: 55px 0%;
+            }
+            .row3 {
+                margin-top: -100px;
+                width: 100%;
+                height: 161px;
+                background-image: url('https://10.0.0.8/phitana/hilera4.png');
+                background-position: 32px 0%;
+            }
+            .row4 {
+                margin-top: -100px;
+                width: 100%;
+                height: 153px;
+                background-image: url('https://10.0.0.8/phitana/hilera2.png');
+                background-position: 90px 0%;
+            }
+        </style>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>
+            var cats=new(function(){
+                this.animate1=function(){
+                    $('.row1')
+                        .animate({transform:'-100px'},'slow','swing')
+                        .animate({marginTop:'-101px'},'slow','swing')
+                }
+                this.animate2=function(){
+                    $('.row2')
+                        .animate({marginTop:'-102px'},'slow','swing')
+                        .animate({marginTop:'-100px'},'slow','swing')
+                }
+                this.animate3=function(){
+                    $('.row3')
+                        .animate({marginTop:'-100px'},'slow','swing')
+                        .animate({marginTop:'-104px'},'slow','swing')
+                }
+                this.animate4=function(){
+                    $('.row4')
+                        .animate({marginTop:'-104px'},'slow','swing')
+                        .animate({marginTop:'-100px'},'slow','swing')
+                }
+            })()
+
+            $(document).ready(function(){
+                setInterval('cats.animate1()',0)
+                setInterval('cats.animate2()',0)
+                setInterval('cats.animate3()',0)
+                setInterval('cats.animate4()',0)
+            })
+        </script>
+    </head>
+    <body>
+        <div style="position: absolute; top: 0px; bottom: 0px; right: 0px; left: 0px; overflow: hidden;">
+            <div class="row1"></div>
+            <div class="row2"></div>
+            <div class="row3"></div>
+            <div class="row4"></div>
+            <div class="row1"></div>
+            <div class="row2"></div>
+            <div class="row3"></div>
+            <div class="row4"></div>
+            <div class="row1"></div>
+            <div class="row2"></div>
+            <div class="row3"></div>
+            <div class="row4"></div>
+            <div class="row1"></div>
+            <div class="row2"></div>
+            <div class="row3"></div>
+            <div class="row4"></div>
+        </div>
+    </body>
+</html>
