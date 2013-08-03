@@ -6,6 +6,7 @@
 body {
 	background: rgba(55, 200, 171,1);
 	font-family: 'stationmedium';
+	cursor: pointer;
 }
 
 @font-face {
