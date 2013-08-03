@@ -91,6 +91,7 @@ header>.count-playing {
     margin-top: 4px;
     margin-right: 5px;
     padding: 0px 10px;
+    outline: none;
 }
 
 .list-gamers>ul>li>a.hide {
