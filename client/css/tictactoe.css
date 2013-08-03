@@ -1,4 +1,6 @@
-* {
+/*CSS FOR LIST-GAMERS*/
+
+{
 	margin: 0px;
 	padding: 0px;
 }
@@ -7,6 +9,7 @@ body {
 	background: rgba(55, 200, 171,1);
 	font-family: 'stationmedium';
 	cursor: pointer;
+	margin: 0;
 }
 
 @font-face {
@@ -20,10 +23,17 @@ body {
     font-style: normal;
 }
 
-header {
+#wrapper>.list {
+	display:;
+}
+
+#wrapper>.list>header {
 	font-size: 30px;
 	background: url('../img/sprite.png') repeat-x;
-	/*background-position: 0% 0%*/;
+	background-position: 0% 0%;
+
+	margin: 0 auto 0 auto;
+	
 	min-height: 48px;
 	margin-bottom: 5px;
 	position: fixed;
@@ -31,56 +41,56 @@ header {
 	width: 100%;
 }
 
-#wrapper>header>.count-gamers {
+#wrapper>.list>header>.count-gamers {
 	min-height: 20px;
 }
 
-header>.count-gamers {
+#wrapper>.list>header>.count-gamers {
 	color: rgba(0, 0, 0, 1);
 	margin: 45px;
 }
 
-header>.count-challengers {
+#wrapper>.list>header>.count-challengers {
 	color: rgba(55, 113, 200, 1);
 	float: right;
 	margin-right: 50px;
 }
 
 
-header>.count-playing {
+#wrapper>.list>header>.count-playing {
 	color: rgba(255, 0, 0, 1);
 	float: right;
 	margin-right: 20px;
 }
 
-.list-gamers {
+#wrapper>.list>.list-gamers {
 	color: rgba(0, 0, 0, 1);
 }
 
-.list-gamers>ul {
+#wrapper>.list>.list-gamers>ul {
 	list-style: none;
 	color:rgba(255, 255, 255, 1);
 	font-size: 20px;
 }
 
-.list-gamers>ul>.play {
+#wrapper>.list>.list-gamers>ul>.play {
 	background: rgba(255, 0, 0, 1);
 }
 
-.list-gamers>ul>.challenger {
+#wrapper>.list>.list-gamers>ul>.challenger {
 	background: rgba(55, 113, 200, 1);
 }
 
-.list-gamers>ul {
+#wrapper>.list>.list-gamers>ul {
 	margin-top: 50px;
 	margin-bottom: 50px;
 }
 
-.list-gamers>ul>li>span {
+#wrapper>.list>.list-gamers>ul>li>span {
 	padding: 5px;
 }
 
-.list-gamers>ul>li>a {
+#wrapper>.list>.list-gamers>ul>li>a {
 	border-color: black;
 	background: rgba(255, 255, 255, 1);
     border-radius: 10px;
@@ -94,15 +104,125 @@ header>.count-playing {
     outline: none;
 }
 
-.list-gamers>ul>li>a.hide {
+#wrapper>.list>.list-gamers>ul>li>a.hide {
 	display: none;
 }
 
-footer {
+#wrapper>.list>footer {
 	background: url('../img/sprite.png') repeat-x;
 	background-position:0% 100%;
 	width: 100%;
 	min-height: 48px;	
 	position: fixed;
 	bottom: 0;
+}
+
+/*CSS PLAYING*/
+
+#wrapper>.playing {
+	background: url("../img/cats.png") repeat;
+	min-width: 350px;
+	min-height: 630px;
+	margin-left: 0px;
+	display:none;
+}
+
+#wrapper>.playing>header {
+	background: url('../img/sprite.png') repeat-x;
+	background-position: 0% 0%;
+	min-height: 48px;
+	margin-bottom: 5px;
+}
+
+#wrapper>.playing>header>.count-wins {
+	font-size: 27px;
+	color: rgba(0, 0, 128, 1);
+}
+
+#wrapper>.playing>header>.name-gamer {
+	font-size: 15px;
+	margin-bottom: 10px;
+}
+
+#wrapper>.playing>header>.star {
+	background-image: url("../img/stars.png");
+	background-repeat: no-repeat;
+	background-position: 0% 100%;
+	float: right;
+	margin-top: 5px;
+	min-width: 30px;
+	min-height: 28px;
+}
+
+#wrapper>.playing>.table {
+	text-align: center;
+	margin: 0 auto 0 auto;
+}
+
+#wrapper>.playing>.table>table {
+	border: 7px solid #000;
+	border-radius: 25px;
+	margin: auto;
+	font-size: 100px;
+}
+
+#wrapper>.playing>.table>table>td {
+	border-right: 7px solid #000;
+	border-bottom: 7px solid #000;
+}
+
+#wrapper>.playing>.table>table>td:last-child {
+	border-right: none;
+}
+
+#wrapper>.playing>.table>table>tr:last-child>td {
+	border-bottom: none;
+}
+
+.circle:before {
+	color: rgba(128, 0, 0, 1);
+	content: "O";
+}
+
+.cross:before {
+	color: rgba(0, 0, 128, 1);
+	content: "X";
+}
+
+.none:before{
+	content: "\a0";
+	padding-right: 60px;
+}
+
+#wrapper>.playing>footer {
+	background: url('../img/sprite.png') repeat-x;
+	background-position:0% 100%;
+	width: 100%;
+	min-height: 48px;	
+	position: fixed;
+	bottom: 0;
+}
+
+#wrapper>.playing>footer>.star {
+	background: url('../img/stars.png');
+	background-repeat: no-repeat;
+	background-position:0% 0%;
+	float: left;
+	margin-top: 15px;
+	min-width: 30px;
+	min-height: 28px;
+}
+
+#wrapper>.playing>footer>.count-wins {
+	color:rgba(128, 0, 0, 1); 
+	font-size: 27px;
+	float: right;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+#wrapper>.playing>footer>.name-gamer {
+	font-size: 15px;
+	float: left;
+	margin-top: 15px;
 }

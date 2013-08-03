@@ -1,28 +1,55 @@
-<!doctype html>
+<!Doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Tic Tac Toe online" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="tic.ico" />
-    <link rel="author" type="text/plain" href="humans.txt" />
-    <link rel="stylesheet" href="css/tictactoe.css" />
-    <script src="js/jquery.min.js"></script>
-    <script src="js/tictactoe.js"></script>
-    <title>Tic tac toe</title>
-</head>
-<body>
-    <section class="wrapper">
-        <header>
-            <span class="count-gamers">56</span>
-            <span class="count-challengers">01</span>
-            <span class="count-playing">02</span>
-        </header>
-        <section class="list-gamers">
-            <ul></ul>
-        </section>
-        <section class="play"></section>
-        <footer></footer>
-    </section>
-</body>
+	<head>
+	<title>Playing with TicTacToe</title>
+	<meta charset="utf-8" />
+	<meta name="description" content="Playing with tic tac toe in html5, css3 y js" />
+	<link rel="stylesheet" href=" css/tictactoe.css">
+	</head>
+	<body>
+		<section id="wrapper">
+			<section class="list">
+       			<header>
+	            	<span class="count-gamers">56</span>
+	            	<span class="count-challengers">01</span>
+	            	<span class="count-playing">02</span>
+	        	</header>
+    	    	<section class="list-gamers">
+        	    	<ul></ul>
+        		</section>
+        		<footer></footer>
+    		</section>
+	 		<section class="playing">
+					<header>
+						<span class="count-wins">34</span>
+						<span class="name-gamer">JOSE ARCADIO BUENDIA</span>
+						<span class="star"></span>
+					</header>
+					<section class="table">
+						<table>
+							<tr>
+								<td class="cross"></td>
+								<td class="circle"></td>
+								<td class="circle"></td>
+							</tr>
+							<tr>
+								<td class="circle"></td>
+								<td class="cross"></td>
+								<td class="none"></td>
+							</tr>
+							<tr>
+								<td class="none"></td>
+								<td class="none"></td>
+								<td class="none"></td>
+							</tr>
+						</table>
+					</section>
+					<footer>
+						<span class="star"></span>
+						<span class="name-gamer">AURELIANO BUENDIA</span>
+						<span class="count-wins">13</span>
+					</footer>
+				</section>
+		</section>
+	</body>
 </html>
