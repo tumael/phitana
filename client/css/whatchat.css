@@ -3,7 +3,7 @@
 }
 */
 ul#list > li {
-    padding: 8px 0px 0px 0px;
+    padding: 5px 0px 0px 0px;
     border-bottom: 1px solid #cccccc;
 }
 
@@ -105,4 +105,12 @@ form.message > div > input[type="submit"] {
     margin-top: 5px;
     background-color: #99cc00;
     font-weight: bold;
+}
+
+section.list {
+    
+}
+
+section.messages {
+    background-color: #cccccc;
 }

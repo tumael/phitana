@@ -57,13 +57,11 @@ footer {
 }
 
 section {
-    position: absolute;
-    top: 22px;
-    bottom: 22px;
-    left: 0px;
-    right: 0px;
-    display: none;
+    float: left;
+    margin-top: 22px;
+    min-width: 320px;
     overflow: auto;
+    display: none;
 }
 
 section.active {
