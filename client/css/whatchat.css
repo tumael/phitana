@@ -1,0 +1,108 @@
+/*footer {
+    height: 60px;
+}
+*/
+ul#list > li {
+    padding: 8px 0px 0px 0px;
+    border-bottom: 1px solid #cccccc;
+}
+
+ul#list > li.focus {
+    background-color: #99cc00;
+}
+
+ul#list > li > img {
+    float: left;
+    width: 45px;
+    height: 45px;
+    margin: 5px;
+    background-color: #ffffff;
+}
+
+ul#list > li > h2 {
+    position: relative;
+    font-size: 14px;
+    color: #99cc00;
+    font-weight: bold;
+    margin-left: 55px;
+    margin-right: 5px;
+}
+
+ul#list > li.focus h2 {
+    color: #ffffff;
+}
+
+ul#list > li > ul {}
+
+ul#list > li > ul > li {
+    font-size: 11px;
+}
+
+ul#list > li > ul > li > a {
+    font-size: inherit;
+}
+
+ul#messages > li {
+    margin: 10px 0px;
+}
+
+ul#messages > li > img {
+    width: 45px;
+    height: 45px;
+    margin: 5px;
+    background-color: #ffffff;
+}
+
+ul#messages > li.left > img {
+    float: left;
+}
+
+ul#messages > li.right > img {
+    float: right;
+}
+
+ul#messages > li > p {
+    position: relative;
+    font-size: 13px;
+}
+
+ul#messages > li.left > p {
+    margin-left: 55px;
+    margin-right: 5px;
+}
+
+ul#messages > li.right > p {
+    margin-left: 5px;
+    margin-right: 55px;
+}
+
+form.message > img {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    background-color: #ffffff;
+}
+
+form.message > div {
+    position: absolute;
+    top: 5px;
+    left: 60px;
+    right: 10px;
+}
+
+form.message > div > input[type="text"] {
+    float: left;
+    width: 100%;
+    border: none;
+    padding: 3px;
+}
+
+form.message > div > input[type="submit"] {
+    float: left;
+    border: none;
+    padding: 1px 5px 3px 5px;
+    margin-top: 5px;
+    background-color: #99cc00;
+    font-weight: bold;
+}

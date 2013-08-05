@@ -1,52 +1,33 @@
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html>
     <head>
-        <meta charset="UTF-8" />
-        <meta name="description" content="Aplicacion que te permite jugar 3 en raya en modo multijugador" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="css/index.css">
-        <script src="js/jquery.min.js" type="text/javascript"></script>
-        <script src="js/auth.js" type="text/javascript"></script>
-        <title>3enRaya</title>
+        <title>phitana</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link rel="stylesheet" href="css/phitana.css" />
     </head>
     <body>
-        <div id="wrapper">
-            <div id="index">
-                <header>
-                    <figure>
-                        <img class="welcome" src="img/tres.jpg" alt="Bienvenido!!!" />
-                        <figcaption></figcaption>
-                    </figure>
-                </header>
-                <nav>
-                    <ul>
-                        <li id="li-index">
-                            <a href="#index">Jugar</a>
-                        </li>
-                        <li id="li-options">
-                            <a href="#options">Opciones</a>
-                        </li>
-                        <li id="li-help">
-                            <a href="#help">Ayuda</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div id="index">
-                <form id="formulario" action="POST">
-                <h1>Nick</h1>
-                <fieldset id="entrada">
-                        <input id="nick" type="text" placeholder="nick" autofocus required />			
-                </fieldset>
-                <fieldset id="accion">
-                        <button type="button" id="enviar" onclick="iniciar()">Enviar</button>
-                </fieldset>
-                </form>
-                </div>
-            <div id="room"></div>
-            <div id="play"></div>
-            <div id="options"></div>
-            <div id="help"></div>
-        </div>
+        <header><h1>phitana</h1></header>
+        <section class="active">
+            <ul>
+                <li>
+                    <a href="whatchat.html">
+                        <div class="app icon-chat"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="tictactoe.html">
+                        <div class="app icon-game"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <div class="app icon-setting"></div>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <footer>
+        </footer>
     </body>
 </html>

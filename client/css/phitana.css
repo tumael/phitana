@@ -1,0 +1,82 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+header {
+    position: fixed;
+    z-index: 10;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: #0099cc;
+    box-shadow: 0px 0px 10px #202020;
+}
+
+header h1 {
+    font-family: Lucida Sans, Lucida Grande, Lucida Sans Unicode, sans-serif;
+    font-size: 13px;
+    text-align: center;
+    padding: 5px;
+    color: #ffffff;
+}
+
+header > div.status {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+}
+
+header > div.available { background-color: #00ff00; }
+header > div.disconnect { background-color: #cccccc; }
+
+header > div.counters {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+}
+
+header > div.counters > span {
+    font-size: 11px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+footer {
+    position: fixed;
+    z-index: 10;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 22px;
+    background-color: #0099cc;
+    box-shadow: 0px 0px 10px #202020;
+}
+
+section {
+    position: absolute;
+    top: 22px;
+    bottom: 22px;
+    left: 0px;
+    right: 0px;
+    display: none;
+    overflow: auto;
+}
+
+section.active {
+    display: block;
+}
+
+section ul {
+    list-style: none;
+}
+
+section ul li {}
+section ul li a {}
+
+.clean {
+    clear: both;
+}

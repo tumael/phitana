@@ -1,0 +1,71 @@
+Conjunto de servicios que puedes hacer al servidor:
+
+- lista de usuarios:
+Operacion:
+{
+    "action":"users-list",
+    "data":""
+}
+Respuesta: 
+{
+    "action":"users-list",
+    "data":[
+        {
+            "id":"123123",
+            "nick":"asdf",
+            "status":"playing"
+        },
+        {
+            "id":"123123",
+            "nick":"asdf",
+            "status":"waiting"
+        },
+        {
+            "id":"123123",
+            "nick":"asdf",
+            "status":"waiting"
+        },
+    ]
+}
+- cambiar de nombre del usuario
+Operacion:
+{
+    "action":"user-nick",
+    "data":"carlos"
+}
+
+- operaciones sobre la lista:
+
+- conexion exitosa:
+Respuesta:
+{
+    "action":"connect",
+    "data":"true"
+}
+
+- nuevo usuario:
+Respuesta:
+{
+    "action":"user-new",
+    "data":{
+        "id":"123123",
+        "nick":"asdf",
+        "status":"waiting"
+    }
+}
+- usuario salio del sistema:
+Respuesta:
+{
+    "action":"user-delete",
+    "data":"123123"
+}
+- cambio de nick
+Operacion:
+{
+    "action":"user-nick",
+    "data": {
+        "id":"123123",
+        "nick":"carlos",
+        "status":"waiting"
+    }
+}
